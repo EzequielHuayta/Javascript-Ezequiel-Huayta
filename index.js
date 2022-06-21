@@ -41,9 +41,10 @@ const cuotas = (cuotas) =>{
         window.alert(`12 cuotas de: ${total/cuotas} por mes`)   
         break;
         default:
+        cuotas = 1;
         window.alert(`1 cuota de: ${total/cuotas}`)   
         break;
     }
 }
-
-cuotas();
+let cantCuotas = parseInt(window.prompt(`Ingresar cuantas cuotas quiere`));
+cuotas(cantCuotas);
