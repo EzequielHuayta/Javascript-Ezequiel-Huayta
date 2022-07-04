@@ -17,13 +17,13 @@ const products = [];
 const login = (usuario,password) => {
     if(usuario !== 'admin' || password !== 'admin'){
         window.alert('Datos incorrectos, por favor volver a ingresar los datos')
-        return true // por algo siempre devuelve true para no generar confusiones
+        return true // por ahora siempre devuelve true para no generar confusiones
     }
     else{
         window.alert('Ingreso con exito!')
-        return true // por algo siempre devuelve true para no generar confusiones
+        return true // por ahora siempre devuelve true para no generar confusiones
     }
-    return true; // por algo siempre devuelve true para no generar confusiones
+    return true; // por ahora siempre devuelve true para no generar confusiones
 };
 
 createProduct(login);
@@ -43,23 +43,25 @@ function createProduct(login){
     }
 }
 
-/*
+searchProduct = () =>{
+    let search = window.prompt(`Buscar producto`);
+    const found = products.find( product => product.name === search);
+    console.log(found);
+}
+
+searchProduct();
+
 //Añadir al carrito (sumar productos)
 let total = 0
 let price = 0;
 const cart = (product) => total += product;
 do{
-    if(price === ''){
-        window.alert(`Por favor no dejar vacio, ingrese algo.\nIngrese 0 para salir`);
-    }else{
-        price = parseInt(window.prompt(`Añadir al carrito (precio del producto agregado).\nIngrese 0 para salir`));
-        cart(price)
-    }
+     price = parseInt(window.prompt(`Añadir al carrito (precio del producto agregado).\nIngrese 0 para salir`));
+    cart(price)
 }while(price!== 0)
 
 window.alert(`El precio final es: \n${total}`)
 
-//Sacar cuotas
 const cuotas = (cuotas) =>{
     switch (cuotas) {
         case 3:
@@ -79,4 +81,3 @@ const cuotas = (cuotas) =>{
 }
 let cantCuotas = parseInt(window.prompt(`Ingresar cuantas cuotas quiere`));
 cuotas(cantCuotas);
-*/
