@@ -81,3 +81,10 @@ const cuotas = (cuotas) =>{
 }
 let cantCuotas = parseInt(window.prompt(`Ingresar cuantas cuotas quiere`));
 cuotas(cantCuotas);
+
+////
+
+
+let contenedor = document.createElement("div");
+contenedor.innerHTML = `${products.map(product => `<h3>Nombre: ${product.name} Precio: ${product.price}</h3>`)} `
+document.body.appendChild(contenedor);
