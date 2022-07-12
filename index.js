@@ -108,7 +108,7 @@ function validarFormulario (event) {
     let price = inputPrice.value;
     let stock = inputStock.value;
     products.push (new product(products.length+1, name, price, stock))
-    console.log(product)
+    console.log(products)
 
 }
 
