@@ -1,8 +1,3 @@
-
-//Login, lo hice pensando en que va a volver a tocar el boton y va a volver a llamar a la funcion con el nuevo usuario y password, por eso no vuelve a llamar a los prompt
-let usuario = window.prompt('Ingrese usuario (admin)');
-let password = window.prompt('Ingrese contraseña (admin)');
-
 class product{
     constructor(id, product, price, stock){
         this.id = id;
@@ -13,6 +8,13 @@ class product{
     }
 }
 const products = [];
+/* 
+//Login, lo hice pensando en que va a volver a tocar el boton y va a volver a llamar a la funcion con el nuevo usuario y password, por eso no vuelve a llamar a los prompt
+let usuario = window.prompt('Ingrese usuario (admin)');
+let password = window.prompt('Ingrese contraseña (admin)');
+
+
+
 
 const login = (usuario,password) => {
     if(usuario !== 'admin' || password !== 'admin'){
@@ -87,4 +89,30 @@ cuotas(cantCuotas);
 
 let contenedor = document.createElement("div");
 contenedor.innerHTML = `${products.map(product => `<h3>Nombre: ${product.name} Precio: ${product.price}</h3>`)} `
-document.body.appendChild(contenedor);
+document.body.appendChild(contenedor); */
+
+
+let formProducts = document.getElementById("formProducts");
+let inputName = document.getElementById("inputName");
+let inputPrice = document.getElementById("inputPrice");
+let labelStock = document.getElementById("labelStock");
+let inputStock = document.getElementById("inputStock");
+document.getElementById('labelStock').innerHTML
+= inputStock.value;
+
+formProducts.onsubmit = (event) => validarFormulario (event);
+
+function validarFormulario (event) {
+    event.preventDefault();
+    let name = inputName.value;
+    let price = inputPrice.value;
+    let stock = inputStock.value;
+    products.push (new product(products.length+1, name, price, stock))
+    console.log(product)
+
+}
+
+function updateLabel(){
+    document.getElementById('labelStock').innerHTML
+    = inputStock.value;
+}
