@@ -97,6 +97,7 @@ let inputName = document.getElementById("inputName");
 let inputPrice = document.getElementById("inputPrice");
 let labelStock = document.getElementById("labelStock");
 let inputStock = document.getElementById("inputStock");
+let table = document.getElementById("tableProducts");
 document.getElementById('labelStock').innerHTML
 = inputStock.value;
 
@@ -109,10 +110,51 @@ function validarFormulario (event) {
     let stock = inputStock.value;
     products.push (new product(products.length+1, name, price, stock))
     console.log(products)
-
+    clearTable();
+    addToTable();
+    productsToLocalStorage();
 }
 
-function updateLabel(){
+function updateLabel() {
     document.getElementById('labelStock').innerHTML
     = inputStock.value;
 }
+
+function addToTable() {
+    products.forEach((product) => {
+        let tableRow = document.createElement("tr");
+        tableRow.innerHTML = `
+        <td>${product.id}</td>
+        <td>${product.name}</td>
+        <td>${product.price}</td>
+        <td>${product.stock}</td>
+        `
+        table.tBodies[0].append(tableRow);
+    })
+}
+
+function clearTable() {
+    while(table.rows.length > 1) {
+        table.deleteRow(1);
+    }
+}
+
+function productsToLocalStorage() {
+    localStorage.setItem("listProduct", JSON.stringify(products));
+
+}
+
+function getProductsToLocalStorage() {
+    let productsInLocalStorage = localStorage.getItem("listProduct");
+    if (productsInLocalStorage !== null) {
+        products = JSON.parse(productsInLocalStorage);
+    }
+}
+
+
+function main() {
+    productsToLocalStorage();
+    addToTable();
+}
+
+main()
