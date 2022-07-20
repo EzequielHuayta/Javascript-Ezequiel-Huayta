@@ -7,7 +7,7 @@ class product{
         this.stock = parseInt(stock)
     }
 }
-const products = [];
+let products = [];
 /* 
 //Login, lo hice pensando en que va a volver a tocar el boton y va a volver a llamar a la funcion con el nuevo usuario y password, por eso no vuelve a llamar a los prompt
 let usuario = window.prompt('Ingrese usuario (admin)');
@@ -98,6 +98,7 @@ let inputPrice = document.getElementById("inputPrice");
 let labelStock = document.getElementById("labelStock");
 let inputStock = document.getElementById("inputStock");
 let table = document.getElementById("tableProducts");
+let totalProducts = 0
 document.getElementById('labelStock').innerHTML
 = inputStock.value;
 
@@ -108,8 +109,12 @@ function validarFormulario (event) {
     let name = inputName.value;
     let price = inputPrice.value;
     let stock = inputStock.value;
-    products.push (new product(products.length+1, name, price, stock))
+    parseInt(stock);
+    totalProducts++;
+    let help = productExists( name );
+    help !== null ? addToProduct(help,stock) :products.push (new product(products.length+1, name, price, stock));
     console.log(products)
+    updateLabelProducts();
     clearTable();
     addToTable();
     productsToLocalStorage();
@@ -120,14 +125,37 @@ function updateLabel() {
     = inputStock.value;
 }
 
+function updateLabelProducts() {
+    document.getElementById('totalProducts').innerHTML = `Cantidad de productos: ${totalProducts}`;
+}
+
+function productExists( nombre ) {
+    
+    console.log(products)
+    const found = products.findIndex( producto => producto.name.toLowerCase() === nombre.toLowerCase() );
+    if (found !== -1) {
+        return found
+    } else {
+        return null
+    }
+}
+
+function addToProduct(help,stock) {
+    debugger
+    a = parseInt(stock);
+    let aux = [...products];
+    b=  parseInt(aux[help].stock);
+    products[help].stock = a += b;;
+}
+
 function addToTable() {
-    products.forEach((product) => {
+    products.forEach(({id, name, price, stock}) => {
         let tableRow = document.createElement("tr");
         tableRow.innerHTML = `
-        <td>${product.id}</td>
-        <td>${product.name}</td>
-        <td>${product.price}</td>
-        <td>${product.stock}</td>
+        <td>${id}</td>
+        <td>${name}</td>
+        <td>${price}</td>
+        <td>${stock}</td>
         `
         table.tBodies[0].append(tableRow);
     })
@@ -146,9 +174,12 @@ function productsToLocalStorage() {
 
 function getProductsToLocalStorage() {
     let productsInLocalStorage = localStorage.getItem("listProduct");
-    if (productsInLocalStorage !== null) {
-        products = JSON.parse(productsInLocalStorage);
-    }
+    productsInLocalStorage !== null 
+    ? 
+    products = JSON.parse(productsInLocalStorage)
+    :
+    products = products;
+    
 }
 
 
