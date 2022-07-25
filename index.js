@@ -105,19 +105,34 @@ document.getElementById('labelStock').innerHTML
 formProducts.onsubmit = (event) => validarFormulario (event);
 
 function validarFormulario (event) {
+    let name = ''
+    let price = ''
+    let stock = 0
     event.preventDefault();
-    let name = inputName.value;
-    let price = inputPrice.value;
-    let stock = inputStock.value;
-    parseInt(stock);
-    totalProducts++;
-    let help = productExists( name );
-    help !== null ? addToProduct(help,stock) :products.push (new product(products.length+1, name, price, stock));
-    console.log(products)
-    updateLabelProducts();
-    clearTable();
-    addToTable();
-    productsToLocalStorage();
+    if (inputName.value === '' || inputPrice.value === '') {
+        swalError('Error en el formulario', 'Por favor cargar todos los datos')
+    } else {
+        name = inputName.value;
+        price = inputPrice.value;
+        stock = inputStock.value;
+        parseInt(stock);
+        totalProducts++;
+        let help = productExists( name );
+        help !== null 
+        ?(
+        addToProduct(help,stock),
+        swalSucess('El producto ya existe', 'Se ha agregado el stock al producto existente')  
+        )
+        :(
+        products.push (new product(products.length+1, name, price, stock) ),
+        swalSucess('Producto registrado con exito!', '')  
+        )   
+        console.log(products)
+        updateLabelProducts();
+        clearTable();
+        addToTable();
+        productsToLocalStorage();
+    }
 }
 
 function updateLabel() {
@@ -127,6 +142,24 @@ function updateLabel() {
 
 function updateLabelProducts() {
     document.getElementById('totalProducts').innerHTML = `Cantidad de productos: ${totalProducts}`;
+}
+
+function swalSucess(title, text) {
+    Swal.fire({
+        title: title,
+        text: text,
+        icon: 'success',
+        confirmButtonText: 'Ok'
+    });
+}
+
+function swalError(title, text) {
+    Swal.fire({
+        title: title,
+        text: text,
+        icon: 'error',
+        confirmButtonText: 'Ok'
+    });
 }
 
 function productExists( nombre ) {
@@ -186,6 +219,8 @@ function getProductsToLocalStorage() {
 function main() {
     productsToLocalStorage();
     addToTable();
+
+    
 }
 
 main()
