@@ -10,19 +10,19 @@ class product{
 let products = [];
 /* 
 //Login, lo hice pensando en que va a volver a tocar el boton y va a volver a llamar a la funcion con el nuevo usuario y password, por eso no vuelve a llamar a los prompt
-let usuario = window.prompt('Ingrese usuario (admin)');
-let password = window.prompt('Ingrese contraseña (admin)');
+let usuario = window.prompt("Ingrese usuario (admin)");
+let password = window.prompt("Ingrese contraseña (admin)");
 
 
 
 
 const login = (usuario,password) => {
-    if(usuario !== 'admin' || password !== 'admin'){
-        window.alert('Datos incorrectos, por favor volver a ingresar los datos')
+    if(usuario !== "admin" || password !== "admin"){
+        window.alert("Datos incorrectos, por favor volver a ingresar los datos")
         return true // por ahora siempre devuelve true para no generar confusiones
     }
     else{
-        window.alert('Ingreso con exito!')
+        window.alert("Ingreso con exito!")
         return true // por ahora siempre devuelve true para no generar confusiones
     }
     return true; // por ahora siempre devuelve true para no generar confusiones
@@ -99,18 +99,17 @@ let labelStock = document.getElementById("labelStock");
 let inputStock = document.getElementById("inputStock");
 let table = document.getElementById("tableProducts");
 let totalProducts = 0
-document.getElementById('labelStock').innerHTML
-= inputStock.value;
+document.getElementById("labelStock").innerHTML = inputStock.value;
 
 formProducts.onsubmit = (event) => validarFormulario (event);
 
 function validarFormulario (event) {
-    let name = ''
-    let price = ''
+    let name = ""
+    let price = ""
     let stock = 0
     event.preventDefault();
-    if (inputName.value === '' || inputPrice.value === '') {
-        swalError('Error en el formulario', 'Por favor cargar todos los datos')
+    if (inputName.value === "" || inputPrice.value === "") {
+        swalError("Error en el formulario", "Por favor cargar todos los datos")
     } else {
         name = inputName.value;
         price = inputPrice.value;
@@ -121,11 +120,11 @@ function validarFormulario (event) {
         help !== null 
         ?(
         addToProduct(help,stock),
-        swalSucess('El producto ya existe', 'Se ha agregado el stock al producto existente')  
+        swalSucess("El producto ya existe", "Se ha agregado el stock al producto existente")  
         )
         :(
         products.push (new product(products.length+1, name, price, stock) ),
-        swalSucess('Producto registrado con exito!', '')  
+        swalSucess("Producto registrado con exito!", "")  
         )   
         console.log(products)
         updateLabelProducts();
@@ -136,20 +135,20 @@ function validarFormulario (event) {
 }
 
 function updateLabel() {
-    document.getElementById('labelStock').innerHTML
+    document.getElementById("labelStock").innerHTML
     = inputStock.value;
 }
 
 function updateLabelProducts() {
-    document.getElementById('totalProducts').innerHTML = `Cantidad de productos: ${totalProducts}`;
+    document.getElementById("totalProducts").innerHTML = `Cantidad de productos: ${totalProducts}`;
 }
 
 function swalSucess(title, text) {
     Swal.fire({
         title: title,
         text: text,
-        icon: 'success',
-        confirmButtonText: 'Ok'
+        icon: "success",
+        confirmButtonText: "Ok"
     });
 }
 
@@ -157,8 +156,8 @@ function swalError(title, text) {
     Swal.fire({
         title: title,
         text: text,
-        icon: 'error',
-        confirmButtonText: 'Ok'
+        icon: "error",
+        confirmButtonText: "Ok"
     });
 }
 
@@ -216,11 +215,15 @@ function getProductsToLocalStorage() {
 }
 
 
+
+
 function main() {
     productsToLocalStorage();
     addToTable();
 
     
 }
+
+
 
 main()
