@@ -10,6 +10,7 @@ function validarFormulario (event) {
     if (inputUsername.value !== "admin" || inputPassword.value !== "admin") {
         swalError("Error en el formulario", "Por favor revisar los datos ingresados (username: admin) (password:admin)")
     } else {
+        console.log('entro');
         Swal.fire({
             title: 'Logueado con exito',
             text: 'Se lo redigira al home en breve',
@@ -36,11 +37,3 @@ function swalError(title, text) {
 function userToLocalStorage() {
     localStorage.setItem("user", JSON.stringify('logged'));
 }
-
-function main() {
-
-    userToLocalStorage();
-}
-
-
-main()

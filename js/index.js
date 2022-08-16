@@ -36,8 +36,24 @@ const verifyUser = () => {
 
     let user = localStorage.getItem("user");
     if (user !== null) {
+        let div = document.getElementById('signIn')
+        let button = document.createElement('button');
+        button.type = 'button'
+        button.setAttribute("id", "logOff");
+        button.setAttribute("onclick", "logOff()");
+        button.className = 'btn btn-outline-danger'
+        button.innerHTML = 'Log off'
+        div.appendChild(button);
         document.getElementById('loginButton').style.display = "none";
+    } else {
+        document.getElementById('loginButton').style.display = "inherit";
     }
+}
+
+const logOff = () => {
+
+    localStorage.removeItem('user')
+    location.reload();
 }
 
 const getProductsFilter =  async () => {
