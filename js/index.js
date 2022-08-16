@@ -9,7 +9,7 @@ const data = await resp.json()
             const div = document.createElement('div')
             div.className = 'card'
             div.innerHTML = `
-                <img src="${product.picture}" style="heigth:250px; width: 250px"class="card-img-top" alt="...">
+                <img src="${product.picture}" style="height:250px; width: 250px"class="card-img-top" alt="...">
                 <div class="card-body">
                 <h5 class="card-title">${product.name}</h5>
                 <p class="card-text">${product.description}.</p>
