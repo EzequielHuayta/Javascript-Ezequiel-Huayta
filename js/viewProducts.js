@@ -135,6 +135,7 @@ function getProductsToLocalStorage() {
 
 
 function main() {
+
     productsToLocalStorage();
     addToTable();
 
